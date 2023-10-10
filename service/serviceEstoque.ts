@@ -6,13 +6,13 @@ import fs from 'fs'
 class estoqueService {
 
     async criar (data: Data) {
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             if (item.nome === data.nome) {
                 throw new Error ("Já existe produto com esse nome.");
             }
         }
-        await writeCSV('../model/estoque', [data])
+        await writeCSV('../model/estoque.csv', [data])
     }
 
     async deletar (nome: string){
@@ -25,20 +25,20 @@ class estoqueService {
 
         produtos.splice(produtoIndex, 1); // não entendi oq faz
 
-        fs.writeFileSync('../model/estoque', '');
-        fs.appendFileSync('../model/estoque', 'id,title,value\n');
+        fs.writeFileSync('../model/estoque.csv', '');
+        fs.appendFileSync('../model/estoque.csv', 'id,title,value\n');
 
-        await writeCSV('../model/estoque', produtos);
+        await writeCSV('../model/estoque.csv', produtos);
     }
 
     async listar () {
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         return produtos;
     }
 
     async calcularValor () {
         var soma = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             soma += item.valor * item.quantidade;
         }
@@ -47,7 +47,7 @@ class estoqueService {
 
     async calcularPeso() {
         var soma = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             soma += item.peso * item.quantidade;
         }
@@ -57,7 +57,7 @@ class estoqueService {
     async calcularMediaValor() {
         var soma = 0;
         var n = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             soma += item.valor * item.quantidade;
             n += item.quantidade;
@@ -68,7 +68,7 @@ class estoqueService {
     async calcularMediaPeso() {
         var soma = 0;
         var n = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             soma += item.peso * item.quantidade;
             n += item.quantidade;
@@ -78,7 +78,7 @@ class estoqueService {
 
     async calcularQuantidadeItens() {
         var n = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             n += item.quantidade;
         }
@@ -87,7 +87,7 @@ class estoqueService {
 
     async calcularQuantidadeProdutos() {
         var n = 0;
-        const produtos = await readCSV('../model/estoque');
+        const produtos = await readCSV('../model/estoque.csv');
         for (const item of produtos) {
             n += 1;
         }
