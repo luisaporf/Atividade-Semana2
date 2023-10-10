@@ -10,6 +10,7 @@ const writeCSV = async (filePath: string, data: Data[]): Promise<void> => {
       { id: 'valor', title: 'VALOR' },
       { id: 'quantidade', title: 'QUANTIDADE' },
     ],
+    append: true,
   });
 
   return csvWriter.writeRecords(data);
