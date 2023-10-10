@@ -1,6 +1,6 @@
-import { Data } from '../model/data.interface'
+import { Data } from './model/data.interface'
 import readline from 'readline';
-import { adicionarProduto, removerProduto, listarItens, verValorTotal, verPesoTotal, verMediaValor, verMediaPeso, verQuantidadeItens, verQuantidadeProdutos } from '../controller/controleEstoque';
+import { adicionarProduto, removerProduto, listarItens, verValorTotal, verPesoTotal, verMediaValor, verMediaPeso, verQuantidadeItens, verQuantidadeProdutos } from './controller/controleEstoque';
 
 const rl = readline.createInterface({
     input: process.stdin,
